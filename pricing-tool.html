@@ -1,6 +1,135 @@
-<iframe 
-    src="YOUR_HOSTED_PAGE_URL_HERE"
-    width="100%"
-    height="900"
-    style="border: none;">
-</iframe>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pricing Tool</title>
+<style>
+    body { font-family: Arial; padding: 20px; }
+    select, input { padding: 8px; margin: 5px 0; width: 100%; }
+    .section { margin-top: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; }
+    .hidden { display: none; }
+</style>
+</head>
+
+<body>
+
+<h2>Self-Pay Pricing Tool</h2>
+
+<!-- PAYMENT TYPE -->
+<div class="section">
+    <label><strong>Payment Type:</strong></label>
+    <select id="paymentType">
+        <option value="">Select...</option>
+        <option value="self">Self-Pay</option>
+        <option value="selfIns">Self-Pay With Insurance</option>
+    </select>
+</div>
+
+<!-- VISIT TYPE -->
+<div class="section">
+    <label><strong>Visit Type:</strong></label>
+    <select id="visitType">
+        <option value="">Select...</option>
+        <option value="checkup">Check-up</option>
+        <option value="sick">Sick Visit</option>
+        <option value="specialty">Specialty Appointment</option>
+        <option value="shotonly">Shot Only</option>
+    </select>
+</div>
+
+<!-- AGE GROUP -->
+<div id="ageGroupSection" class="section hidden">
+    <label><strong>Age Group:</strong></label>
+    <select id="ageGroup">
+        <option value="">Select...</option>
+        <option value="<1">&lt;1yr</option>
+        <option value="1-4">1–4yr</option>
+        <option value="5-11">5–11yr</option>
+        <option value="12-17">12–17yr</option>
+        <option value="18+">&gt;18yr</option>
+    </select>
+</div>
+
+<!-- PATIENT TYPE -->
+<div id="patientTypeSection" class="section hidden">
+    <label><strong>Patient Type:</strong></label>
+    <select id="patientType">
+        <option value="">Select...</option>
+        <option value="est">Established</option>
+        <option value="new">New Patient</option>
+    </select>
+</div>
+
+<!-- SPECIALTY DURATION -->
+<div id="specialtySection" class="section hidden">
+    <label><strong>Appointment Duration:</strong></label>
+    <select id="specialtyDuration">
+        <option value="">Select...</option>
+        <option value="<30">&lt;30 min</option>
+        <option value="40-60">40–60 min</option>
+        <option value=">120">&gt;120 min</option>
+    </select>
+</div>
+
+<!-- VACCINE LIST -->
+<div id="vaccineSection" class="section hidden">
+    <label><strong>Vaccine:</strong></label>
+    <select id="vaccine">
+        <option value="">Select...</option>
+        <option value="DTAP">DTAP – $40</option>
+        <option value="DTpeds">DT (peds) – $32</option>
+        <option value="HPV">HPV/Gardasil 9 – $425</option>
+        <option value="HepA">Hep A – $60</option>
+        <option value="HepB">Hep B – $45</option>
+        <option value="Flu">Influenza – $50</option>
+        <option value="IPV">IPV – $60</option>
+        <option value="Kinrix">Kinrix – $130</option>
+        <option value="Menveo">Menveo – $250</option>
+        <option value="Trumenba">Trumenba – $180</option>
+        <option value="Bexsero">Bexsero – $325</option>
+        <option value="MMR">MMR – $175</option>
+        <option value="Pediarix">Pediarix – $200</option>
+        <option value="Hib">Hib – $35</option>
+        <option value="Prevnar13">Prevnar 13 – $300</option>
+        <option value="Prevnar15">Prevnar 15 – $375</option>
+        <option value="Proquad">Proquad – $400</option>
+        <option value="Rotateq">Rotateq – $200</option>
+        <option value="TDAP">TDAP – $60</option>
+        <option value="TB">TB Skin Test – $18</option>
+        <option value="TD">TD – $55</option>
+        <option value="Varicella">Varicella – $325</option>
+        <option value="COVID6">COVID (6m–11yr) – $170</option>
+        <option value="COVID12">COVID (12+ yr) – $185</option>
+    </select>
+</div>
+
+<script>
+document.getElementById("visitType").addEventListener("change", function() {
+    const v = this.value;
+
+    // Hide everything first
+    document.getElementById("ageGroupSection").classList.add("hidden");
+    document.getElementById("patientTypeSection").classList.add("hidden");
+    document.getElementById("specialtySection").classList.add("hidden");
+    document.getElementById("vaccineSection").classList.add("hidden");
+
+    // Show what is needed
+    if (v === "checkup") {
+        document.getElementById("ageGroupSection").classList.remove("hidden");
+        document.getElementById("patientTypeSection").classList.remove("hidden");
+        document.getElementById("vaccineSection").classList.remove("hidden");
+    }
+    if (v === "sick") {
+        document.getElementById("patientTypeSection").classList.remove("hidden");
+    }
+    if (v === "specialty") {
+        document.getElementById("specialtySection").classList.remove("hidden");
+    }
+    if (v === "shotonly") {
+        document.getElementById("vaccineSection").classList.remove("hidden");
+    }
+});
+</script>
+
+</body>
+</html>
